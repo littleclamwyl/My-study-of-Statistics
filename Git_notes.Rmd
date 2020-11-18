@@ -1,0 +1,60 @@
+---
+title: "clam"
+author: "yulin"
+date: "2020/11/13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Github
+
+### 1.Purpose
+host the codes for a special project
+
+
+### 1-1warehouse(repository)
+
+### 1-2store(star)
+
+### 1-3clone/copy the project(fork)
+Note: it is independent
+update the forked project, the original one will not be updated
+
+### 1-4watch(关注)
+if you find something interesing, you could watch them and be informed if they are updated
+
+
+### 1-5issue(事务卡片) 
+find some BUGs and chat with others
+
+
+create/update/delete
+
+linux codes for local repository.
+
+linux codes for remote repository.
+
+initialize the config:
+user.name, user.email.
+
+Github搭建个人网站.
+
+
+https://username.github.io
+
+1)新建仓库,仓库名必须是: username.github.io
+
+2)在仓库下新建index.html文件
+
+```{r}
+x1 <- c(1, 2)
+x2 <- c(3, 4)
+data <- data.frame(x1, x2)
+data
+
+
+```
