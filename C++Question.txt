@@ -1,0 +1,150 @@
+1.为什么LeetCode经常出现non-void function return non problems?
+
+4/21
+
+C++学习路线：
+
+《Effective C++》
+
+数据结构和算法
+计算机网络（主要是TCP/IP协议栈）
+操作系统（进程和线程、锁、内存等等）
+设计模式
+
+1.数据结构与算法 《大话数据结构》c/c++  ，《算法第四版》 java ，《剑指offer》
+2.计算机网络《tcp/ip详解》
+3.操作系统  《深入理解计算机系统》
+4.设计模式 《大话设计模式》
+三 应用于编程
+1.linux使用
+《linux就该这么学》
+2.编译和调试
+GUN官方GCC和GDB文档 ★★★★★★★★★★
+《debugging  with gdb 》中文版
+《跟我一起写makefile》陈皓
+3.linux环境编程
+《unix环境高级编程》
+《linux高性能服务器编程》
+《posix多线程程序设计》
+
+
+虎书下载：OK
+
+
+
+
+
+1.C++ 多态
+
+#include <iostream>
+#include "Header.h"
+using namespace std;
+
+
+
+
+class Base {
+
+private:
+
+
+public:
+
+	virtual void BaseTestA() {
+		cout << "I am Base Test A Function!" << endl;
+	}
+
+	void BaseTestB() {
+		cout << "I am Base Test B Function!" << endl;
+	}
+
+
+};
+
+
+class Derived :public Base {
+private:
+
+public:
+	void DerivedTestA() {
+		cout << "I am Derived Test A Function!" << endl;
+	}
+
+	void DerivedTestB() {
+		cout << "I am Derived Test B Function!" << endl;
+	}
+
+	virtual void BaseTestA() {
+		cout << "I am Derived Test A Function!" << endl;
+	}
+
+	void BaseTestB() {
+		cout << "I am Derived Test B Function!" << endl;
+	}
+
+};
+
+
+int main() {
+
+
+	Base* base1 = new Base;
+	base1->BaseTestA();
+	base1->BaseTestB();
+	cout << "**********************************" << endl;
+
+	Base* base2 = new Derived;
+	base2->BaseTestA();
+	base2->BaseTestB();
+	cout << "**********************************" << endl;
+
+
+	Derived* derive1 = new Derived;
+	derive1->BaseTestA();
+	derive1->BaseTestB();
+	derive1->DerivedTestA();
+	derive1->DerivedTestB();
+	cout << "**********************************" << endl;
+
+}
+
+output:
+
+I am Base Test A Function!
+I am Base Test B Function!
+**********************************
+I am Derived Test A Function!
+I am Base Test B Function!
+**********************************
+I am Derived Test A Function!
+I am Derived Test B Function!
+I am Derived Test A Function!
+I am Derived Test B Function!
+**********************************
+
+/* 使用基类指针初始化，可以调用派生类的虚函数， 取决于你Base* base = new 哪一个派生类 */
+
+class Base {
+public:
+	virtual void BaseFuncA();
+//	virtual void BaseFuncA() {}; // 这是实现
+
+};
+
+
+class Derived :public Base {
+public:
+	//virtual void BaseFuncA();
+};
+
+int main() {
+	// If no Base b1, Derived d1, build Success
+
+	//Base b1; // If define Base or Derived, fail unresolved external symbol "public: virtual void __cdecl Base::BaseFuncA(void)" (?BaseFuncA@Base@@UEAAXXZ)
+	
+	//Derived d1; // unresolved external symbol "public: virtual void __cdecl Base::BaseFuncA(void)" (? BaseFuncA@Base@@UEAAXXZ)
+}
+
+/* 虚函数加上{} 就是实现，基类有了虚函数，如果初始化了基类或者派生类，一定要定义（函数定义就是函数实现）。函数声明就是声明，也就是virtual void BaseFunc(); */
+/* 函数实现就是 virtual void BaseFuncA(){}; */
+

@@ -1,1 +1,1 @@
-这个repo连接的是My study of Statistics
+master分支，存放稳定版本
